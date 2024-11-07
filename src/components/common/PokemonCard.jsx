@@ -2,9 +2,13 @@ import { useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
 
+import { usePokemon } from "../../context/pokemonContext";
+
 import Button from "./Button";
 
-const PokemonCard = ({ pokemon, onClick, add }) => {
+const PokemonCard = ({ pokemon, add }) => {
+  const { addPokemon, removePokemon } = usePokemon();
+
   const navigate = useNavigate();
 
   return (
@@ -16,7 +20,11 @@ const PokemonCard = ({ pokemon, onClick, add }) => {
       </CardTextContainer>
       <Button
         label={add ? "추가" : "삭제"}
-        onClick={(e) => onClick(e, pokemon.id)}
+        onClick={
+          add
+            ? (e) => addPokemon(e, pokemon.id)
+            : (e) => removePokemon(e, pokemon.id)
+        }
         $backgroundColor={add ? true : false}
       />
     </CardContainer>

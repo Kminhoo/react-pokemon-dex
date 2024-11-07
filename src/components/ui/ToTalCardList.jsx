@@ -1,17 +1,16 @@
 import styled from "styled-components";
 
+import { usePokemon } from "../../context/pokemonContext";
+
 import PokemonCard from "../common/PokemonCard";
 
-const ToTalCardList = ({ pokemon, onClick }) => {
+const ToTalCardList = () => {
+  const { totalPokemon } = usePokemon();
+
   return (
     <ToTalGridContainer>
-      {pokemon.map((pokemon) => (
-        <PokemonCard
-          key={pokemon.id}
-          pokemon={pokemon}
-          add={true}
-          onClick={onClick}
-        />
+      {totalPokemon.map((pokemon) => (
+        <PokemonCard key={pokemon.id} pokemon={pokemon} add={true} />
       ))}
     </ToTalGridContainer>
   );

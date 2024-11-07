@@ -1,20 +1,20 @@
 import styled from "styled-components";
 
+import { usePokemon } from "../../context/pokemonContext";
+
 import NoPokemonCard from "../common/NoPokemonCard";
 import PokemonCard from "../common/PokemonCard";
 
-const MyPokemonList = ({ myPokemon, onClick }) => {
+const MyPokemonList = () => {
+  const { myPokemon } = usePokemon();
+
   return (
     <MyPokemonListContainer>
       <MyPokemonListTitle>나만의 포켓몬</MyPokemonListTitle>
       <MyPokemonListGrid>
         {myPokemon.map((pokemon, index) =>
           pokemon ? (
-            <PokemonCard
-              pokemon={pokemon}
-              key={pokemon.korean_name}
-              onClick={onClick}
-            />
+            <PokemonCard pokemon={pokemon} key={pokemon.korean_name} />
           ) : (
             <NoPokemonCard key={index} />
           )
