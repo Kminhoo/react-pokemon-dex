@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import { useSelector } from "react-redux";
 
-import { usePokemon } from "../../context/pokemonContext";
+import styled from "styled-components";
 
 import NoPokemonCard from "../common/NoPokemonCard";
 import PokemonCard from "../common/PokemonCard";
 
 const MyPokemonList = () => {
-  const { myPokemon } = usePokemon();
+  const { myPokemon } = useSelector((state) => state.pokemon);
 
   return (
     <MyPokemonListContainer>

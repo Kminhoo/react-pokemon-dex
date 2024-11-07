@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import { useSelector } from "react-redux";
 
-import { usePokemon } from "../../context/pokemonContext";
+import styled from "styled-components";
 
 import PokemonCard from "../common/PokemonCard";
 
-const ToTalCardList = () => {
-  const { totalPokemon } = usePokemon();
+const TotalCardList = () => {
+  const { totalPokemon } = useSelector((state) => state.pokemon);
 
   return (
     <ToTalGridContainer>
@@ -16,7 +16,7 @@ const ToTalCardList = () => {
   );
 };
 
-export default ToTalCardList;
+export default TotalCardList;
 
 const ToTalGridContainer = styled.div`
   display: grid;

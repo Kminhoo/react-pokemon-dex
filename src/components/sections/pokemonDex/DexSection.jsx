@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import ToTalCardList from "../../ui/ToTalCardList";
+import TotalCardList from "../../ui/TotalCardList";
 import MyPokemonList from "../../ui/MyPokemonList";
 
 const DexSection = () => {
@@ -8,7 +8,7 @@ const DexSection = () => {
     <DexSectionComponent>
       <DexSectionInner>
         <MyPokemonList />
-        <ToTalCardList />
+        <TotalCardList />
       </DexSectionInner>
     </DexSectionComponent>
   );

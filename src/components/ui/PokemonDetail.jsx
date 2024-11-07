@@ -4,8 +4,19 @@ import styled from "styled-components";
 
 import Button from "../common/Button";
 
+import { detailAddPokemon } from "../../redux/slice/pokemonSlice";
+
+import { useDispatch } from "react-redux";
+
 const PokemonDetail = ({ pokemonData }) => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  const handleDetailAddPokemon = (e) => {
+    e.stopPropagation();
+    dispatch(detailAddPokemon(pokemonData.id));
+  };
 
   return (
     <DetailContainer>
@@ -24,7 +35,18 @@ const PokemonDetail = ({ pokemonData }) => {
         </DetailTypes>
         <DetailDesc>{pokemonData.description}</DetailDesc>
       </DetailTextContainer>
-      <Button label="뒤로가기" $backgroundColor onClick={() => navigate(-1)} />
+      <DetailBtnGroup>
+        <Button
+          label="뒤로가기"
+          $backgroundColor
+          onClick={() => navigate(-1)}
+        />
+        <Button
+          label="나의 포켓몬 추가하기"
+          $width
+          onClick={handleDetailAddPokemon}
+        />
+      </DetailBtnGroup>
     </DetailContainer>
   );
 };
@@ -106,4 +128,10 @@ const DetailTypes = styled.p`
 const DetailDesc = styled.p`
   font-size: 1.2rem;
   line-height: 1.4;
+`;
+
+const DetailBtnGroup = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 `;

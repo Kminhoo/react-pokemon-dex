@@ -1,15 +1,27 @@
 import { useNavigate } from "react-router-dom";
 
+import { useDispatch } from "react-redux";
+
 import styled from "styled-components";
 
-import { usePokemon } from "../../context/pokemonContext";
+import { addPokemon, removePokemon } from "../../redux/slice/pokemonSlice";
 
 import Button from "./Button";
 
 const PokemonCard = ({ pokemon, add }) => {
-  const { addPokemon, removePokemon } = usePokemon();
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  const handleAddPokemon = (e) => {
+    e.stopPropagation();
+    dispatch(addPokemon(pokemon.id));
+  };
+
+  const handleRemovePokemon = (e) => {
+    e.stopPropagation();
+    dispatch(removePokemon(pokemon.id));
+  };
 
   return (
     <CardContainer onClick={() => navigate(`/pokemon-dex/${pokemon.id}`)}>
@@ -20,11 +32,7 @@ const PokemonCard = ({ pokemon, add }) => {
       </CardTextContainer>
       <Button
         label={add ? "추가" : "삭제"}
-        onClick={
-          add
-            ? (e) => addPokemon(e, pokemon.id)
-            : (e) => removePokemon(e, pokemon.id)
-        }
+        onClick={add ? handleAddPokemon : handleRemovePokemon}
         $backgroundColor={add ? true : false}
       />
     </CardContainer>
