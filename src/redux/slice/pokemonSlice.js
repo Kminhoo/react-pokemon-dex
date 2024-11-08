@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import POKEMON_DATA from "../../data/pokemonData";
-
 import { toast } from "react-toastify";
+
+import POKEMON_DATA from "../../data/pokemonData";
 
 const initialState = {
   myPokemon: new Array(6).fill(null),
@@ -39,6 +39,7 @@ const pokemonSlice = createSlice({
         );
 
         state.myPokemon[emptySlot] = newPokemon;
+        toast.success("포켓몬을 추가했어요!");
       }
     },
 
