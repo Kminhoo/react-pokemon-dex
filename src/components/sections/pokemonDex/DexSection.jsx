@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import TotalCardList from "../../ui/TotalCardList";
+import TotalCardList from "../../ui/ToTalCardList";
 import MyPokemonList from "../../ui/MyPokemonList";
 
 const DexSection = () => {

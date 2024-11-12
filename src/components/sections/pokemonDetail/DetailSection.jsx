@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-
-import { useParams } from "react-router-dom";
+import useFetchPokemon from "../../../hooks/useFetchPokemon";
 
 import styled from "styled-components";
 
@@ -8,28 +6,7 @@ import PokemonDetail from "../../ui/PokemonDetail";
 import Loading from "../../ui/Loading";
 
 const DetailSection = () => {
-  const { id } = useParams();
-
-  const [pokemonData, setPokemonData] = useState(null);
-
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchPokemData = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch("/data/pokemonData.json");
-        const data = await response.json();
-        const result = data.find((item) => item.id === parseInt(id));
-        setPokemonData(result);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchPokemData();
-  }, [id]);
+  const { pokemonData, loading } = useFetchPokemon();
 
   if (loading) {
     return (
